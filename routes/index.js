@@ -72,6 +72,7 @@ router.post('/chatbot', function (req, res, next) {
                 });
             }
             catch (error) {
+                console.log(error);
                 return res.json({
                     fulfillmentText: "fulfillmentText",
                     fulfillmentMessages: [{
