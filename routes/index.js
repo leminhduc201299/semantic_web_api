@@ -1,19 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const axios = require('axios');
-const cheerio = require('cheerio');
 
 const wiki = require('wikijs').default;
-
-// Parse a SPARQL query to a JSON object
-var SparqlParser = require('sparqljs').Parser;
-var parser = new SparqlParser();
-
-var parsedQuery = parser.parse(
-    'PREFIX foaf: <http://xmlns.com/foaf/0.1/> ' +
-    'SELECT * { ?mickey foaf:name "Mickey Mouse"@en; foaf:knows ?other. }');
-
-
 
 /* GET home page. */
 router.post('/chatbot', function (req, res, next) {
