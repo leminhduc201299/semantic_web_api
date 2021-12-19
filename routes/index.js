@@ -7,10 +7,11 @@ const wiki = require('wikijs').default;
 /* GET home page. */
 router.post('/chatbot', function (req, res, next) {
     (async () => {
+        console.log("***", req.body.queryResult.parameters)
 
         let page = await wiki()
-            .page('messi')
-        
+            .page('Nguyễn Công Phượng')
+
         let pageInfo = await page.fullInfo();
         let pageSummary = await page.summary();
 
