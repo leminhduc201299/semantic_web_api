@@ -21,7 +21,7 @@ router.post('/chatbot', function (req, res, next) {
             fulfillmentText: "fulfillmentText",
             fulfillmentMessages: [{
                 "text": {
-                    "text": ["Error"]
+                    "text": [JSON.stringify(pageInfo)]
                 }
             }],
             source: "webhook-sample"
