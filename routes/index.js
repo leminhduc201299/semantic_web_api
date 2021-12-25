@@ -7,7 +7,7 @@ const wiki = require('wikijs').default;
 /* GET home page. */
 router.post('/chatbot', function (req, res, next) {
     (async () => {
-        console.log("***", req.body.queryResult.parameters)
+        // console.log("***", req.body.queryResult.parameters)
 
         let page = await wiki()
             .page('Nguyễn Công Phượng')
@@ -21,7 +21,7 @@ router.post('/chatbot', function (req, res, next) {
             fulfillmentText: "fulfillmentText",
             fulfillmentMessages: [{
                 "text": {
-                    "text": [JSON.stringify(pageInfo)]
+                    "text": ["Error"]
                 }
             }],
             source: "webhook-sample"
