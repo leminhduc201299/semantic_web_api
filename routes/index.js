@@ -50,6 +50,7 @@ router.post('/chatbot', function (req, res, next) {
 
         let pageInfo = await page.fullInfo();
         let textRes = '';
+        console.log('pageInfo: ', pageInfo);
         
         if (action === 'ask_summary') {
             let pageSummary = await page.summary();
@@ -66,7 +67,15 @@ router.post('/chatbot', function (req, res, next) {
             }
 
             let age = pageInfo.general.birthDate.age;
-            textRes = `He is ${age} years old`;
+            textRes = `${person.name} is ${age} years old`;
+        }
+        else if (action === 'ask_birthday') {
+            if (!(pageInfo && pageInfo.general && pageInfo.general.birthDate && pageInfo.general.birthDate.birthday)) {
+                textRes = "I didn't get that. Can you repeat?"
+            }
+
+            let birthday = pageInfo.general.birthDate.birthday;
+            textRes = `${person.name}'s birthday is  ${birthday}`;
         }
         else {
             textRes = "I didn't get that. Can you repeat?"
