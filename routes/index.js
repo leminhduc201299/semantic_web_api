@@ -39,7 +39,7 @@ router.post('/chatbot', function (req, res, next) {
         let pageInfo = await page.fullInfo();
         let pageSummary = await page.summary();
 
-        if (action === ask_age) {
+        if (action === 'ask_age') {
             let age = pageInfo.general.birthDate.age;
 
             let textRes = `He is ${age} years old`;
