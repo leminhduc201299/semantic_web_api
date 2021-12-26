@@ -21,9 +21,9 @@ router.post('/chatbot', function (req, res, next) {
 
         let parameters = req.body.queryResult.parameters;
         let person = parameters.person;
-        console.log('********', req.body.queryResult.parameters, req.body.queryResult);
+        let action = req.body.queryResult.action;
 
-        if (!person) {
+        if (!(person && action)) {
             return res.json({
                 fulfillmentText: "fulfillmentText",
                 fulfillmentMessages: [{
@@ -35,11 +35,12 @@ router.post('/chatbot', function (req, res, next) {
             });
         }
 
-        let page = await wiki().page('Nguyễn Công Phượng')
+        let page = await wiki().page(person.name)
 
         let pageInfo = await page.fullInfo();
         let pageSummary = await page.summary();
 
+        console.log('******', pageInfo, pageSummary)
 
         return res.json({
             fulfillmentText: "fulfillmentText",
