@@ -49,48 +49,38 @@ router.post('/chatbot', function (req, res, next) {
         }
 
         let pageInfo = await page.fullInfo();
-        let pageSummary = await page.summary();
+        let textRes = '';
+        
+        if (action === 'ask_summary') {
+            let pageSummary = await page.summary();
 
-        if (action === 'ask_age') {
+            if (pageSummary) {
+                textRes = pageSummary;
+            } else {
+                textRes = "I didn't get that. Can you repeat?"
+            }
+        }
+        else if (action === 'ask_age') {
             if (!(pageInfo && pageInfo.general && pageInfo.general.birthDate && pageInfo.general.birthDate.age)) {
-                return res.json({
-                    fulfillmentText: "fulfillmentText",
-                    fulfillmentMessages: [{
-                        "text": {
-                            "text": ["I didn't get that. Can you repeat?"]
-                        }
-                    }],
-                    source: "webhook-sample"
-                });
+                textRes = "I didn't get that. Can you repeat?"
             }
 
             let age = pageInfo.general.birthDate.age;
-
-            let textRes = `He is ${age} years old`;
-
-            return res.json({
-                fulfillmentText: "fulfillmentText",
-                fulfillmentMessages: [{
-                    "text": {
-                        "text": [textRes]
-                    }
-                }],
-                source: "webhook-sample"
-            });
+            textRes = `He is ${age} years old`;
         }
         else {
-            return res.json({
-                fulfillmentText: "fulfillmentText",
-                fulfillmentMessages: [{
-                    "text": {
-                        "text": ["I didn't get that. Can you repeat?"]
-                    }
-                }],
-                source: "webhook-sample"
-            });
+            textRes = "I didn't get that. Can you repeat?"
         }
 
-        
+        return res.json({
+            fulfillmentText: "fulfillmentText",
+            fulfillmentMessages: [{
+                "text": {
+                    "text": [textRes]
+                }
+            }],
+            source: "webhook-sample"
+        });
 
     })();
 
