@@ -78,6 +78,22 @@ router.post('/chatbot', function (req, res, next) {
             let birthday = pageInfo.general.birthDate.date;
             textRes = `${person.name}'s birthday is  ${Format.formatDate(birthday)}`;
         }
+        else if (action === 'ask_birthplace') {
+            if (!(pageInfo && pageInfo.general && pageInfo.general.birthPlace)) {
+                textRes = "I didn't get that. Can you repeat?"
+            }
+
+            let birthPlace = pageInfo.general.birthPlace;
+            textRes = `${person.name} was born in  ${birthPlace}`;
+        }
+        else if (action === 'ask_currentteam') {
+            if (!(pageInfo && pageInfo.general && pageInfo.general.currentclub)) {
+                textRes = "I didn't get that. Can you repeat?"
+            }
+
+            let currentclub = pageInfo.general.currentclub;
+            textRes = `${person.name} is playing for ${currentclub}`;
+        }
         else {
             textRes = "I didn't get that. Can you repeat?"
         }
