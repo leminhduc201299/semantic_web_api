@@ -72,59 +72,64 @@ router.post('/chatbot', function (req, res, next) {
             if (!(pageInfo && pageInfo.general && pageInfo.general.birthDate && pageInfo.general.birthDate.age)) {
                 textRes = "I didn't get that. Can you repeat?"
             }
-
-            let age = pageInfo.general.birthDate.age;
-            textRes = `${person.name} is ${age} years old`;
+            else {
+                let age = pageInfo.general.birthDate.age;
+                textRes = `${person.name} is ${age} years old`;
+            }
         }
         else if (action === 'ask_birthday') {
             if (!(pageInfo && pageInfo.general && pageInfo.general.birthDate && pageInfo.general.birthDate.date)) {
                 textRes = "I didn't get that. Can you repeat?"
             }
-
-            let birthday = pageInfo.general.birthDate.date;
-            textRes = `${person.name}'s birthday is  ${Format.formatDate(birthday)}`;
+            else {
+                let birthday = pageInfo.general.birthDate.date;
+                textRes = `${person.name}'s birthday is  ${Format.formatDate(birthday)}`;
+            }
         }
         else if (action === 'ask_birthplace') {
             if (!(pageInfo && pageInfo.general && pageInfo.general.birthPlace)) {
                 textRes = "I didn't get that. Can you repeat?"
             }
-
-            let birthPlace = pageInfo.general.birthPlace;
-            textRes = `${person.name} was born in  ${birthPlace}`;
+            else {
+                let birthPlace = pageInfo.general.birthPlace;
+                textRes = `${person.name} was born in  ${birthPlace}`;
+            }
         }
         else if (action === 'ask_currentteam') {
             if (!(pageInfo && pageInfo.general && pageInfo.general.currentclub)) {
                 textRes = "I didn't get that. Can you repeat?"
             }
-
-            let currentclub = pageInfo.general.currentclub;
-            textRes = `${person.name} is playing for ${currentclub}`;
+            else {
+                let currentclub = pageInfo.general.currentclub;
+                textRes = `${person.name} is playing for ${currentclub}`;
+            }
         }
         else if (action === 'ask_fullname') {
             if (!(pageInfo && pageInfo.general && pageInfo.general.fullname)) {
                 textRes = "I didn't get that. Can you repeat?"
             }
-
-            let fullname = pageInfo.general.fullname;
-            textRes = `Full name is ${fullname}`;
+            else {
+                let fullname = pageInfo.general.fullname;
+                textRes = `Full name is ${fullname}`;
+            }
         }
         else if (action === 'ask_number') {
             if (!(pageInfo && pageInfo.general && pageInfo.general.clubnumber)) {
                 textRes = "I didn't get that. Can you repeat?"
             }
-
-            console.log('**********************************', !(pageInfo && pageInfo.general && pageInfo.general.clubnumber))
-
-            let clubnumber = pageInfo.general.clubnumber;
-            textRes = `${person.name}'s club number is ${clubnumber}`;
+            else {
+                let clubnumber = pageInfo.general.clubnumber;
+                textRes = `${person.name}'s club number is ${clubnumber}`;
+            }
         }
         else if (action === 'ask_position') {
             if (!(pageInfo && pageInfo.general && pageInfo.general.position)) {
                 textRes = "I didn't get that. Can you repeat?"
             }
-
-            let position = pageInfo.general.position;
-            textRes = `${person.name} plays the position of  ${position.constructor === Array ? position.join(', ') : position}`;
+            else {
+                let position = pageInfo.general.position;
+                textRes = `${person.name} plays the position of  ${position.constructor === Array ? position.join(', ') : position}`;
+            }
         }
         else {
             textRes = "I didn't get that. Can you repeat?"
