@@ -100,6 +100,30 @@ router.post('/chatbot', function (req, res, next) {
             let currentclub = pageInfo.general.currentclub;
             textRes = `${person.name} is playing for ${currentclub}`;
         }
+        else if (action === 'ask_fullname') {
+            if (!(pageInfo && pageInfo.general && pageInfo.general.fullname)) {
+                textRes = "I didn't get that. Can you repeat?"
+            }
+
+            let fullname = pageInfo.general.fullname;
+            textRes = `Full name is ${fullname}`;
+        }
+        else if (action === 'ask_number') {
+            if (!(pageInfo && pageInfo.general && pageInfo.general.clubnumber)) {
+                textRes = "I didn't get that. Can you repeat?"
+            }
+
+            let clubnumber = pageInfo.general.clubnumber;
+            textRes = `${person.name}'s club number is ${clubnumber}`;
+        }
+        else if (action === 'ask_position') {
+            if (!(pageInfo && pageInfo.general && pageInfo.general.position)) {
+                textRes = "I didn't get that. Can you repeat?"
+            }
+
+            let position = pageInfo.general.position;
+            textRes = `${person.name} plays the position of  ${position.constructor === Array ? position.join(', ') : position}`;
+        }
         else {
             textRes = "I didn't get that. Can you repeat?"
         }
