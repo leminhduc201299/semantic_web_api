@@ -35,7 +35,19 @@ router.post('/chatbot', function (req, res, next) {
             });
         }
 
-        let page = await wiki().page(person.name)
+        let page = await wiki().page(person.name);
+        if (!page) {
+            return res.json({
+                fulfillmentText: "fulfillmentText",
+                fulfillmentMessages: [{
+                    "text": {
+                        "text": ["I missed that, say that again?"]
+                    }
+                }],
+                source: "webhook-sample"
+            });
+        }
+
         let pageInfo = await page.fullInfo();
         let pageSummary = await page.summary();
 
