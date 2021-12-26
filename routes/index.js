@@ -36,7 +36,6 @@ router.post('/chatbot', function (req, res, next) {
         }
 
         let page = await wiki().page(person.name);
-        console.log(page);
         if (!page) {
             return res.json({
                 fulfillmentText: "fulfillmentText",
@@ -53,6 +52,18 @@ router.post('/chatbot', function (req, res, next) {
         let pageSummary = await page.summary();
 
         if (action === 'ask_age') {
+            if (!(pageInfo && pageInfo.general && pageInfo.general.birthDate && pageInfo.general.birthDate.age)) {
+                return res.json({
+                    fulfillmentText: "fulfillmentText",
+                    fulfillmentMessages: [{
+                        "text": {
+                            "text": ["I didn't get that. Can you repeat?"]
+                        }
+                    }],
+                    source: "webhook-sample"
+                });
+            }
+
             let age = pageInfo.general.birthDate.age;
 
             let textRes = `He is ${age} years old`;
