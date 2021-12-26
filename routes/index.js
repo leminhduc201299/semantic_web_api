@@ -113,6 +113,8 @@ router.post('/chatbot', function (req, res, next) {
                 textRes = "I didn't get that. Can you repeat?"
             }
 
+            console.log('**********************************', !(pageInfo && pageInfo.general && pageInfo.general.clubnumber))
+
             let clubnumber = pageInfo.general.clubnumber;
             textRes = `${person.name}'s club number is ${clubnumber}`;
         }
