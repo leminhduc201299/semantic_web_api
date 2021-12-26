@@ -7,21 +7,45 @@ const wiki = require('wikijs').default;
 /* GET home page. */
 router.post('/chatbot', function (req, res, next) {
     (async () => {
-        // console.log("***", req.body.queryResult.parameters)
+        if (!(req.body && req.body.queryResult && req.body.queryResult.parameters)) {
+            return res.json({
+                fulfillmentText: "fulfillmentText",
+                fulfillmentMessages: [{
+                    "text": {
+                        "text": ["Sorry, what was that?"]
+                    }
+                }],
+                source: "webhook-sample"
+            });
+        }
 
-        let page = await wiki()
-            .page('Nguyễn Công Phượng')
+        let parameters = req.body.queryResult.parameters;
+        let person = parameters.person;
+        console.log('********', req.body.queryResult.parameters);
+
+        if (!person) {
+            return res.json({
+                fulfillmentText: "fulfillmentText",
+                fulfillmentMessages: [{
+                    "text": {
+                        "text": ["I didn't get that. Can you say it again?"]
+                    }
+                }],
+                source: "webhook-sample"
+            });
+        }
+
+        let page = await wiki().page('Nguyễn Công Phượng')
 
         let pageInfo = await page.fullInfo();
         let pageSummary = await page.summary();
 
-        console.log(pageInfo, pageSummary)
 
         return res.json({
             fulfillmentText: "fulfillmentText",
             fulfillmentMessages: [{
                 "text": {
-                    "text": ["Error"]
+                    "text": ["I didn't get that. Can you repeat?"]
                 }
             }],
             source: "webhook-sample"
