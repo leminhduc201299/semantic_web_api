@@ -21,7 +21,7 @@ router.post('/chatbot', function (req, res, next) {
 
         let parameters = req.body.queryResult.parameters;
         let person = parameters.person;
-        console.log('********', req.body.queryResult.parameters);
+        console.log('********', req.body.queryResult.parameters, req.body.queryResult);
 
         if (!person) {
             return res.json({
