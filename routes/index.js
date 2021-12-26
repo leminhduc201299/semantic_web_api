@@ -36,6 +36,7 @@ router.post('/chatbot', function (req, res, next) {
         }
 
         let page = await wiki().page(person.name);
+        console.log(page);
         if (!page) {
             return res.json({
                 fulfillmentText: "fulfillmentText",
