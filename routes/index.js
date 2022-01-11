@@ -22,6 +22,7 @@ let option = {
 
 
 
+
 /* GET home page. */
 router.post('/chatbot', function (req, res, next) {
     (async () => {
@@ -188,4 +189,4 @@ router.post('/chatbot', function (req, res, next) {
 
 });
 
-module.exports = router;
+module.exports = router;                                                     
