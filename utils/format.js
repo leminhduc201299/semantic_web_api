@@ -14,6 +14,7 @@ class Format {
         return output;
     }
 
+    
 }
 
 module.exports = Format;
