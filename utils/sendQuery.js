@@ -28,5 +28,4 @@ var sendQuery = async function (option) {
         return result;
     }
 }
-
 module.exports = sendQuery;
