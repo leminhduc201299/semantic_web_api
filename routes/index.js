@@ -5,6 +5,7 @@ const Format = require('../utils/format.js')
 const sendQuery = require('../utils/sendQuery.js')
 
 
+
 const wiki = require('wikijs').default;
 
 const newEngine = require('@comunica/actor-init-sparql').newEngine;
